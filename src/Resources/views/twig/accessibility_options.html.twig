@@ -1,0 +1,52 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        let btnAccessibility = document.querySelector(".{{ buttonId }}");
+        btnAccessibility.addEventListener("click", function(){
+            fetch("{{ path('ajax_accessibility_options') }}")
+                .then(function(response){
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    return Promise.reject();
+                }).then(function(data){
+                    if (data.hasSettings) {
+                        let accessibilityModal = document.querySelector("#{{ elementId }}");
+                        accessibilityModal.classList.remove("hidden");
+                        accessibilityModal.innerHTML = data.template;
+
+                        let saveAccessibility = document.querySelector("#saveAccessibility");
+                        saveAccessibility.addEventListener("click", function(event){
+                            event.preventDefault();
+
+                            let accessibilityForm = document.querySelector("#accessibilityOptions");
+
+                            fetch("{{ path('ajax_save_accessibility') }}", {
+                                method: "POST",
+                                body: new FormData(accessibilityForm)
+                            }).then(function(response){
+                                if (response.ok) {
+                                    return response.json();
+                                }
+                                return Promise.reject();
+                            }).then(function(data){
+                                let selectedOptions = JSON.parse(data.selectedOptions);
+                                for (let selectedOptionKey in selectedOptions) {
+                                    if (selectedOptions[selectedOptionKey] !== "") {
+                                        if (!document.documentElement.classList.contains(selectedOptions[selectedOptionKey])) {
+                                            document.documentElement.classList.add(selectedOptions[selectedOptionKey]);
+                                        }
+                                    } else {
+                                        document.documentElement.classList.remove(document.querySelector(`input[name="${selectedOptionKey}"]:not(:checked)`).value);
+                                    }
+                                }
+                            }).catch(function(error){
+                                console.error(error);
+                            });
+                        });
+                    }
+            }).catch(function(error){
+                console.error(error);
+            });
+        });
+    });
+</script>
