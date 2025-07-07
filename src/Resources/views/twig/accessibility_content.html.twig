@@ -1,0 +1,47 @@
+<form method="post" id="accessibilityOptions">
+    {% if settings.fontSize %}
+        <div>
+            <p>{{ "fontSize"|trans }}</p>
+            <input type="radio" name="fontSize" value="" id="fontSizeDefault" {% if accessibilityCookie == false or accessibilityCookie.fontSize == "" %}checked{% endif %}>
+            <label for="fontSizeDefault">{{ "default"|trans }}</label>
+
+            <input type="radio" name="fontSize" value="fontIncreased" id="fontSizeIncreased" {% if accessibilityCookie and accessibilityCookie.fontSize == "fontIncreased" %}checked{% endif %}>
+            <label for="fontSizeIncreased"> {{ "fontIncreased"|trans }}</label>
+        </div>
+    {% endif %}
+
+    {% if settings.contrast %}
+        <div>
+            <p>{{ "contrast"|trans }}</p>
+            <input type="radio" name="contrast" value="" id="contrastDefault" {% if accessibilityCookie == false or accessibilityCookie.contrast == "" %}checked{% endif %}>
+            <label for="contrastDefault"> {{ "default"|trans }}</label>
+
+            <input type="radio" name="contrast" value="contrastIncreased" id="contrastIncreased" {% if accessibilityCookie and accessibilityCookie.contrast == "contrastIncreased" %}checked{% endif %}>
+            <label for="contrastIncreased"> {{ "contrastIncreased"|trans }}</label>
+        </div>
+    {% endif %}
+
+    {% if settings.dyslexiaFont %}
+        <div>
+            <p>{{ "dyslexiaFont"|trans }}</p>
+            <input type="radio" name="dyslexiaFont" value="" id="dyslexiaFontDefault" {% if accessibilityCookie == false or accessibilityCookie.dyslexiaFont == "" %}checked{% endif %}>
+            <label for="dyslexiaFontDefault"> {{ "default"|trans }}</label>
+
+            <input type="radio" name="dyslexiaFont" value="fontAdapted" id="dyslexiaFontAdapted" {% if accessibilityCookie and accessibilityCookie.dyslexiaFont == "fontAdapted" %}checked{% endif %}>
+            <label for="dyslexiaFontAdapted"> {{ "fontAdapted"|trans }}</label>
+        </div>
+    {% endif %}
+
+    {% if settings.lineHeight %}
+        <div>
+            <p>{{ "lineHeight"|trans }}</p>
+            <input type="radio" name="lineHeight" value="" id="lineHeightDefault" {% if accessibilityCookie == false or accessibilityCookie.lineHeight == "" %}checked{% endif %}>
+            <label for="lineHeightDefault"> {{ "default"|trans }}</label>
+
+            <input type="radio" name="lineHeight" value="lineHeightIncreased" id="lineHeightIncreased" {% if accessibilityCookie and accessibilityCookie.lineHeight == "lineHeightIncreased" %}checked{% endif %}>
+            <label for="lineHeightIncreased"> {{ "lineHeightIncreased"|trans }}</label>
+        </div>
+    {% endif %}
+
+    <button type="submit" id="saveAccessibility">{{ "save"|trans }}</button>
+</form>

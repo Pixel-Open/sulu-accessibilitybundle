@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Pixel\AccessibilityBundle\Controller\Website\:
+    resource: "../../Controller/Website"
+
+  Pixel\AccessibilityBundle\Twig\SettingsExtension:
+    public: false
+    autowire: true
+    tags:
+      - {name: "twig.extension"}

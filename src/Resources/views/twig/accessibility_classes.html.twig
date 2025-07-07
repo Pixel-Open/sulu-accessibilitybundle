@@ -1,0 +1,23 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        function getCookie(name) {
+            let cookies = document.cookie.split("; ");
+            for (let cookie of cookies) {
+                let [key, value] = cookie.split("=");
+                if (key === name) {
+                    return decodeURIComponent(value);
+                }
+            }
+            return null;
+        }
+
+        let accessibilityCookie = getCookie("accessibility");
+
+        if (accessibilityCookie) {
+            let accessibilityValues = JSON.parse(accessibilityCookie);
+            for (let selectedOptionKey in accessibilityValues) {
+                if (accessibilityValues[selectedOptionKey] !== "") document.documentElement.classList.add(accessibilityValues[selectedOptionKey]);
+            }
+        }
+    })
+</script>

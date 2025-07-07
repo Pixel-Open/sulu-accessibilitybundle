@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<form xmlns="http://schemas.sulu.io/template/template"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/form-1.0.xsd"
+>
+    <key>accessibility_settings</key>
+
+    <properties>
+        <property name="fontSize" type="checkbox" colspan="3">
+            <meta>
+                <title>accessibility_settings.fontSize</title>
+            </meta>
+            <params>
+                <param name="default_value" value="false"/>
+            </params>
+        </property>
+
+        <property name="contrast" type="checkbox" colspan="3">
+            <meta>
+                <title>accessibility_settings.contrast</title>
+            </meta>
+            <params>
+                <param name="default_value" value="false"/>
+            </params>
+        </property>
+
+        <property name="dyslexiaFont" type="checkbox" colspan="3">
+            <meta>
+                <title>accessibility_settings.dyslexiaFont</title>
+            </meta>
+            <params>
+                <param name="default_value" value="false"/>
+            </params>
+        </property>
+
+        <property name="lineHeight" type="checkbox" colspan="3">
+            <meta>
+                <title>accessibility_settings.lineHeight</title>
+            </meta>
+            <params>
+                <param name="default_value" value="false"/>
+            </params>
+        </property>
+    </properties>
+</form>
